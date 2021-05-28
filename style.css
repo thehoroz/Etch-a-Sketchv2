@@ -2,6 +2,14 @@ html {
     background: rgb(154, 190, 154);
 }
 
+#resetButton {
+    width: auto;
+}
+
+#resetButton:hover {
+    cursor: pointer;
+}
+
 #gridcontainer {
     display: grid;
     height: 600px;

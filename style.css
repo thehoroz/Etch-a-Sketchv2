@@ -1,13 +1,48 @@
 html {
-    background: rgb(154, 190, 154);
+    background: rgb(166, 215, 223);
+}
+
+#buttonContainer {
+    width: 130px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: rgb(166, 215, 223);
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    top: 20%;
+    left: 50px;
+    position: absolute;
+}
+button {
+    width: 90px;
+    height: 35px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.493);
+    border-radius: 4px;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+#randomColorButton {
+    background: linear-gradient(120deg, blue 5%, orange 40%, cyan);
 }
 
 #resetButton {
-    width: auto;
+    background: white;
 }
 
 #resetButton:hover {
-    cursor: pointer;
+    background: black;
+    color: white;
+}
+
+#greyScaleButton {
+    background: linear-gradient(90deg, rgb(206, 202, 202), grey);
 }
 
 #gridcontainer {
@@ -22,10 +57,10 @@ html {
 }
 
 .gridStyle {
-    background: rgb(248, 215, 215);
+    background: rgb(255, 255, 255);
     border: 1px solid black;
 }
 
 .colorChange {
-    background: rgb(219, 217, 110);
+    background: rgb(0, 0, 0);
 }

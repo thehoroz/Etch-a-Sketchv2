@@ -1,12 +1,11 @@
 const gridContainer = document.querySelector('#gridcontainer');
-const button = document.querySelector('#resetButton');
+const resetBtn = document.querySelector('#resetButton');
 const randomColorBtn = document.querySelector('#randomColorButton');
 const greyScaleBtn = document.querySelector('#greyScaleButton');
 
-let gridValue = 16;
-let cellCount = gridValue * gridValue;
+let gridValue = 0;
 
-button.addEventListener('click', () => {
+resetBtn.addEventListener('click', () => {
     resetGrid();
     createGrid();
 });
@@ -21,48 +20,50 @@ greyScaleBtn.addEventListener('click', () => {
     generateGreyColor();
 });
 
-function autoGrid(cellCount){
-    gridContainer.setAttribute('style', `grid-template-columns: repeat(${gridValue}, 1fr); 
-    grid-template-rows: repeat(${gridValue}, 1fr);`);
-    for (let i = 0; i < cellCount; i++) {
-        const gridCell = document.createElement('div');
-        gridCell.classList.add('gridStyle');
-        gridCell.addEventListener('mouseenter', e => e.target.classList.add('colorChange'));
-        gridContainer.appendChild(gridCell)
-}};
-
-function createGrid() {
-    let gridValue = prompt("Make a new grid! (max: 64)");
-    if (gridValue > 64 || gridValue < 0) {
-        alert("You overexceeded the amount!")
-        return;
-    } 
-    cellCount = gridValue * gridValue;
-    gridContainer.setAttribute('style', `grid-template-columns: repeat(${gridValue}, 1fr); 
-    grid-template-rows: repeat(${gridValue}, 1fr);`);
-    for (let i = 0; i < cellCount; i++) {
-        const gridCell = document.createElement('div');
-        gridCell.classList.add('gridStyle');
-        gridCell.addEventListener('mouseenter', e => e.target.classList.add('colorChange'));
-        gridContainer.appendChild(gridCell)
-}
-};
-
 function resetGrid() {
     while(gridContainer.hasChildNodes()) {
         gridContainer.removeChild(gridContainer.lastChild);
     }
 }
 
-function generateRandomColor() {
-    let gridValue = prompt("Make a new grid! (max: 64)");
+function gridPrompt() {
+    gridValue = prompt("Make a new grid! (max: 64)");
     if (gridValue > 64 || gridValue < 0) {
         alert("You overexceeded the amount!")
         return;
     } 
-    let cellCount = gridValue * gridValue;
     gridContainer.setAttribute('style', `grid-template-columns: repeat(${gridValue}, 1fr); 
     grid-template-rows: repeat(${gridValue}, 1fr);`);
+}
+
+function autoGrid(gridValue){
+    gridContainer.setAttribute('style', `grid-template-columns: repeat(${gridValue}, 1fr); 
+    grid-template-rows: repeat(${gridValue}, 1fr);`);
+
+    let cellCount = gridValue * gridValue;
+
+    for (let i = 0; i < cellCount; i++) {
+    const gridCell = document.createElement('div');
+    gridCell.classList.add('gridStyle');
+    gridCell.addEventListener('mouseenter', e => e.target.classList.add('colorChange'));
+    gridContainer.appendChild(gridCell)
+}};
+
+function createGrid() {
+    gridPrompt(); 
+    cellCount = gridValue * gridValue;
+    for (let i = 0; i < cellCount; i++) {
+        const gridCell = document.createElement('div');
+        gridCell.classList.add('gridStyle');
+        gridCell.addEventListener('mouseenter', e => e.target.classList.add('colorChange'));
+        gridContainer.appendChild(gridCell)
+    }
+};
+
+
+function generateRandomColor() {
+    gridPrompt(); 
+    cellCount = gridValue * gridValue;
     for (let i = 0; i < cellCount; i++) {
         const gridCell = document.createElement('div');
         let value1 = Math.floor(Math.random() * 256);
@@ -76,14 +77,8 @@ function generateRandomColor() {
 }
 
 function generateGreyColor() {
-    let gridValue = prompt("Make a new grid! (max: 64)");
-    if (gridValue > 64 || gridValue < 0) {
-        alert("You overexceeded the amount!")
-        return;
-    }; 
-    let cellCount = gridValue * gridValue;
-    gridContainer.setAttribute('style', `grid-template-columns: repeat(${gridValue}, 1fr); 
-    grid-template-rows: repeat(${gridValue}, 1fr);`);
+    gridPrompt(); 
+    cellCount = gridValue * gridValue;
     for (let i = 0; i < cellCount; i++) {
         const gridCell = document.createElement('div');
         let rgb = [255, 255, 255];
@@ -99,4 +94,4 @@ function generateGreyColor() {
     };
 };
 
-autoGrid(cellCount);
+autoGrid(16);
